@@ -1,0 +1,243 @@
+:root {
+  color-scheme: dark;
+  font-family: "Nunito", system-ui, sans-serif;
+  background: #10172b;
+  color: #f6f7ff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --muted: #a7b0cb;
+  --lime: #d7f36a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 50% -20%, rgba(84, 105, 179, 0.3), transparent 55%),
+    #10172b;
+}
+
+button {
+  font: inherit;
+}
+
+.game-shell {
+  width: min(100% - 32px, 1000px);
+  margin: 0 auto;
+  padding: 38px 0 24px;
+}
+
+.game-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin: 0 4px 18px;
+}
+
+.eyebrow,
+.score-label,
+.message-kicker {
+  margin: 0;
+  color: var(--lime);
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+}
+
+h1 {
+  margin: 3px 0 0;
+  font-size: clamp(30px, 6vw, 42px);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+.score-card {
+  display: grid;
+  gap: 2px;
+  min-width: 100px;
+  padding: 10px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.score-value {
+  font-size: 23px;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.score-total {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.game-card {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 18px;
+  background: #18213a;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+}
+
+.canvas-wrap {
+  position: relative;
+  overflow: hidden;
+  background: #a9e3ed;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+.game-message {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px;
+  background: rgba(16, 23, 43, 0.7);
+  text-align: center;
+  transition: opacity 180ms ease;
+}
+
+.game-message.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.game-message strong {
+  font-size: clamp(24px, 5vw, 38px);
+  font-weight: 900;
+}
+
+.game-message > span:not(.message-kicker) {
+  color: #d9e0f1;
+}
+
+.start-button,
+.restart-button {
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.start-button {
+  margin-top: 12px;
+  padding: 12px 22px;
+  background: var(--lime);
+  color: #1c2633;
+  box-shadow: 0 5px 0 #9fb849;
+}
+
+.start-button:hover {
+  background: #e2fb7e;
+}
+
+.game-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+}
+
+.game-footer p,
+.tip {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.restart-button {
+  flex: 0 0 auto;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.09);
+  color: #f6f7ff;
+}
+
+.restart-button:hover,
+.control-button:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.touch-controls {
+  display: none;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.control-button {
+  width: 64px;
+  height: 54px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-size: 23px;
+  font-weight: 800;
+  touch-action: none;
+  user-select: none;
+}
+
+.jump-button {
+  width: 92px;
+  margin-left: auto;
+  color: var(--lime);
+  font-family: "DM Mono", monospace;
+  font-size: 13px;
+}
+
+.tip {
+  margin: 15px 4px 0;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .game-shell {
+    width: min(100% - 20px, 1000px);
+    padding-top: 22px;
+  }
+
+  .game-card {
+    border-radius: 13px;
+  }
+
+  .game-footer {
+    align-items: flex-start;
+    padding: 10px 12px;
+  }
+
+  .game-footer p {
+    max-width: 72%;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .touch-controls {
+    display: flex;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

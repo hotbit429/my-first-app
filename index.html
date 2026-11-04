@@ -1,11 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    ようこそ私のページへ！
-</body>
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#10172b" />
+    <title>SKY HOP - 横スクロールアクション</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="game-header">
+        <div>
+          <p class="eyebrow">MINI PLATFORMER</p>
+          <h1>SKY HOP</h1>
+        </div>
+        <div class="score-card" aria-live="polite">
+          <span class="score-label">COINS</span>
+          <span class="score-value"><span id="coin-count">0</span><span class="score-total"> / 8</span></span>
+        </div>
+      </header>
+
+      <section class="game-card" aria-label="横スクロールアクションゲーム">
+        <div class="canvas-wrap">
+          <canvas id="game" width="960" height="540" aria-label="ゲーム画面"></canvas>
+          <div class="game-message" id="game-message" role="status" aria-live="polite">
+            <span class="message-kicker">READY?</span>
+            <strong>冒険をはじめよう</strong>
+            <span>コインを集めて、旗を目指そう！</span>
+            <button class="start-button" id="start-button" type="button">ゲームスタート</button>
+          </div>
+        </div>
+        <div class="game-footer">
+          <p id="game-status">← → / A D で移動　・　Space / ↑ でジャンプ</p>
+          <button class="restart-button" id="restart-button" type="button">最初から</button>
+        </div>
+      </section>
+
+      <nav class="touch-controls" aria-label="タッチ操作">
+        <button class="control-button" type="button" data-key="left" aria-label="左へ移動">←</button>
+        <button class="control-button" type="button" data-key="right" aria-label="右へ移動">→</button>
+        <button class="control-button jump-button" type="button" data-key="jump" aria-label="ジャンプ">JUMP</button>
+      </nav>
+      <p class="tip">足場から落ちても大丈夫。リスタートしてもう一度挑戦しよう。</p>
+    </main>
+  </body>
 </html>
