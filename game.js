@@ -166,30 +166,44 @@ function update() {
 
 function drawBackground() {
   const sky = context.createLinearGradient(0, 0, 0, HEIGHT);
-  sky.addColorStop(0, "#83c9e6");
-  sky.addColorStop(1, "#d5f0d7");
+  sky.addColorStop(0, "#020815");
+  sky.addColorStop(0.35, "#0b1730");
+  sky.addColorStop(0.72, "#1b2e5b");
+  sky.addColorStop(1, "#0d0f1d");
   context.fillStyle = sky;
   context.fillRect(0, 0, WIDTH, HEIGHT);
 
-  context.fillStyle = "rgba(255, 255, 255, 0.55)";
+  context.fillStyle = "rgba(255, 255, 255, 0.9)";
+  context.beginPath();
+  context.arc(WIDTH - 150, 86, 34, 0, Math.PI * 2);
+  context.fill();
+
+  context.fillStyle = "rgba(82, 240, 255, 0.28)";
+  for (let i = 0; i < 40; i += 1) {
+    const x = ((i * 71 - cameraX * 0.32) % (WIDTH + 160)) - 25;
+    const y = 30 + (i % 9) * 24;
+    context.fillRect(x, y, 2, 2);
+  }
+
+  context.fillStyle = "rgba(122, 242, 255, 0.38)";
   for (const cloud of [
-    { x: 135, y: 96, scale: 1 },
-    { x: 440, y: 155, scale: 0.7 },
-    { x: 770, y: 82, scale: 0.9 },
+    { x: 150, y: 104, scale: 1 },
+    { x: 460, y: 150, scale: 0.75 },
+    { x: 800, y: 88, scale: 0.9 },
   ]) {
     const x = ((cloud.x - cameraX * 0.18) % (WIDTH + 180) + WIDTH + 180) % (WIDTH + 180) - 70;
     context.beginPath();
-    context.ellipse(x, cloud.y, 37 * cloud.scale, 14 * cloud.scale, 0, 0, Math.PI * 2);
-    context.ellipse(x - 20 * cloud.scale, cloud.y + 3, 21 * cloud.scale, 11 * cloud.scale, 0, 0, Math.PI * 2);
-    context.ellipse(x + 21 * cloud.scale, cloud.y + 4, 24 * cloud.scale, 10 * cloud.scale, 0, 0, Math.PI * 2);
+    context.ellipse(x, cloud.y, 38 * cloud.scale, 15 * cloud.scale, 0, 0, Math.PI * 2);
+    context.ellipse(x - 22 * cloud.scale, cloud.y + 4, 22 * cloud.scale, 11 * cloud.scale, 0, 0, Math.PI * 2);
+    context.ellipse(x + 22 * cloud.scale, cloud.y + 4, 25 * cloud.scale, 11 * cloud.scale, 0, 0, Math.PI * 2);
     context.fill();
   }
 
-  context.fillStyle = "#83c4b8";
+  context.fillStyle = "#171c2d";
   context.beginPath();
-  context.moveTo(0, 420);
-  for (let x = 0; x <= WIDTH + 80; x += 80) {
-    context.lineTo(x, 340 + Math.sin((x + cameraX * 0.12) * 0.012) * 32);
+  context.moveTo(0, 430);
+  for (let x = 0; x <= WIDTH + 120; x += 85) {
+    context.lineTo(x, 365 + Math.sin((x + cameraX * 0.15) * 0.016) * 26);
   }
   context.lineTo(WIDTH, HEIGHT);
   context.lineTo(0, HEIGHT);
@@ -202,15 +216,15 @@ function drawPlatforms() {
     const x = platform.x - cameraX;
     if (x + platform.width < -5 || x > WIDTH + 5) continue;
 
-    context.fillStyle = "#915c48";
+    context.fillStyle = "#1b2237";
     context.fillRect(x, platform.y, platform.width, platform.height);
-    context.fillStyle = "#63a95d";
+    context.fillStyle = "#5ef2ff";
     context.fillRect(x, platform.y, platform.width, 9);
-    context.fillStyle = "#8bc86d";
+    context.fillStyle = "#96f7ff";
     context.fillRect(x, platform.y, platform.width, 3);
 
     if (platform.height > 30) {
-      context.fillStyle = "rgba(74, 45, 50, 0.25)";
+      context.fillStyle = "rgba(94, 242, 255, 0.2)";
       for (let tileX = x + 12; tileX < x + platform.width; tileX += 34) {
         context.fillRect(tileX, platform.y + 24, 12, 4);
         context.fillRect(tileX - 10, platform.y + 48, 17, 4);
@@ -225,11 +239,11 @@ function drawCoins() {
     const x = coin.x - cameraX;
     if (x < -20 || x > WIDTH + 20) continue;
     const wobble = Math.sin(animationFrame * 0.08 + coin.x) * 2;
-    context.fillStyle = "#eeae3c";
+    context.fillStyle = "#ffd166";
     context.beginPath();
     context.arc(x, coin.y + wobble, 11, 0, Math.PI * 2);
     context.fill();
-    context.strokeStyle = "#fff0a4";
+    context.strokeStyle = "#fff2a6";
     context.lineWidth = 3;
     context.beginPath();
     context.arc(x, coin.y + wobble, 6, 0, Math.PI * 2);
@@ -240,27 +254,35 @@ function drawCoins() {
 function drawPlayer() {
   const x = player.x - cameraX;
   const y = player.y;
-  context.fillStyle = "#26365b";
+
+  context.fillStyle = "#0d1320";
   context.fillRect(x + 3, y + 8, player.width - 6, player.height - 8);
-  context.fillStyle = "#f3a978";
+
+  context.fillStyle = "#64f0ff";
   context.fillRect(x + 6, y, player.width - 12, 24);
-  context.fillStyle = "#d7f36a";
+
+  context.fillStyle = "#d35cff";
   context.fillRect(x + 3, y + 20, player.width - 6, 18);
-  context.fillStyle = "#26365b";
+
+  context.fillStyle = "#0d1320";
   context.fillRect(x + 7, y + 39, 8, 9);
   context.fillRect(x + 21, y + 39, 8, 9);
-  context.fillStyle = "#26365b";
-  context.fillRect(x + 22, y + 8, 3, 4);
+
+  context.fillStyle = "#f4f9ff";
+  context.fillRect(x + 8, y + 5, 6, 5);
+  context.fillRect(x + 20, y + 5, 6, 5);
+  context.fillStyle = "#ff7edb";
+  context.fillRect(x + 14, y + 8, 6, 4);
 }
 
 function drawGoal() {
   const x = WORLD_WIDTH - 80 - cameraX;
-  context.fillStyle = "#fff7d1";
+  context.fillStyle = "#ebf3ff";
   context.fillRect(x, 355, 5, 105);
-  context.fillStyle = "#f27b63";
+  context.fillStyle = "#ff4db8";
   context.beginPath();
   context.moveTo(x + 5, 358);
-  context.lineTo(x + 55, 373);
+  context.lineTo(x + 60, 373);
   context.lineTo(x + 5, 390);
   context.closePath();
   context.fill();

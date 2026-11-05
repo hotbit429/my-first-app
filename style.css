@@ -1,12 +1,14 @@
 :root {
   color-scheme: dark;
   font-family: "Nunito", system-ui, sans-serif;
-  background: #10172b;
+  background: #060b18;
   color: #f6f7ff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  --muted: #a7b0cb;
-  --lime: #d7f36a;
+  --muted: #9bb3d6;
+  --lime: #64f0ff;
+  --panel: rgba(12, 18, 29, 0.8);
+  --panel-border: rgba(100, 240, 255, 0.36);
 }
 
 * {
@@ -18,8 +20,8 @@ body {
   min-height: 100vh;
   margin: 0;
   background:
-    radial-gradient(ellipse at 50% -20%, rgba(84, 105, 179, 0.3), transparent 55%),
-    #10172b;
+    radial-gradient(ellipse at 50% -10%, rgba(101, 81, 255, 0.38), transparent 45%),
+    linear-gradient(180deg, #050a15 0%, #0d1224 100%);
 }
 
 button {
@@ -80,10 +82,10 @@ h1 {
 
 .game-card {
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.13);
+  border: 1px solid var(--panel-border);
   border-radius: 18px;
-  background: #18213a;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+  background: var(--panel);
+  box-shadow: 0 24px 80px rgba(6, 9, 18, 0.5);
 }
 
 .canvas-wrap {
@@ -139,13 +141,13 @@ canvas {
 .start-button {
   margin-top: 12px;
   padding: 12px 22px;
-  background: var(--lime);
-  color: #1c2633;
-  box-shadow: 0 5px 0 #9fb849;
+  background: linear-gradient(135deg, #64f0ff, #d35cff);
+  color: #0c1020;
+  box-shadow: 0 5px 0 rgba(123, 75, 255, 0.9);
 }
 
 .start-button:hover {
-  background: #e2fb7e;
+  background: linear-gradient(135deg, #84f5ff, #ee7af8);
 }
 
 .game-footer {
