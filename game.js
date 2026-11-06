@@ -166,26 +166,26 @@ function update() {
 
 function drawBackground() {
   const sky = context.createLinearGradient(0, 0, 0, HEIGHT);
-  sky.addColorStop(0, "#020815");
-  sky.addColorStop(0.35, "#0b1730");
-  sky.addColorStop(0.72, "#1b2e5b");
-  sky.addColorStop(1, "#0d0f1d");
+  sky.addColorStop(0, "#72c9e8");
+  sky.addColorStop(0.35, "#9edff0");
+  sky.addColorStop(0.72, "#d5eff0");
+  sky.addColorStop(1, "#e7f2d6");
   context.fillStyle = sky;
   context.fillRect(0, 0, WIDTH, HEIGHT);
 
-  context.fillStyle = "rgba(255, 255, 255, 0.9)";
+  context.fillStyle = "rgba(255, 244, 181, 0.95)";
   context.beginPath();
   context.arc(WIDTH - 150, 86, 34, 0, Math.PI * 2);
   context.fill();
 
-  context.fillStyle = "rgba(82, 240, 255, 0.28)";
+  context.fillStyle = "rgba(255, 255, 255, 0.55)";
   for (let i = 0; i < 40; i += 1) {
     const x = ((i * 71 - cameraX * 0.32) % (WIDTH + 160)) - 25;
     const y = 30 + (i % 9) * 24;
     context.fillRect(x, y, 2, 2);
   }
 
-  context.fillStyle = "rgba(122, 242, 255, 0.38)";
+  context.fillStyle = "rgba(255, 255, 255, 0.68)";
   for (const cloud of [
     { x: 150, y: 104, scale: 1 },
     { x: 460, y: 150, scale: 0.75 },
@@ -199,7 +199,7 @@ function drawBackground() {
     context.fill();
   }
 
-  context.fillStyle = "#171c2d";
+  context.fillStyle = "#7391b7";
   context.beginPath();
   context.moveTo(0, 430);
   for (let x = 0; x <= WIDTH + 120; x += 85) {
